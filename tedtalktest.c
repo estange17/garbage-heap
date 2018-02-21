@@ -24,7 +24,6 @@ int main( void ) {
     TEDtalk_t * talk1 = NULL ;
     TEDtalk_t * talk2 = NULL ;
     TEDtalk_t * talk3 = NULL ;
-    talk3 = malloc(sizeof(talk3));
 
     printf( "Creating a time...\n" ) ;
     atime = newEventTime( 6, 30, "pm" ) ;
