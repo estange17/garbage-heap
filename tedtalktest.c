@@ -41,11 +41,11 @@ int main( void ) {
 
     char * mstr = tedtalkToString( talk1 ) ;
     printf( "Otherwise... %s\n", mstr ) ;
-
+    free(mstr);
     tedtalkPlay( talk1, atime ) ;
     mstr = tedtalkToString( talk1 ) ;
     printf( "After playing the tedtalk... \n\t%s\n", mstr ) ;
-
+    free(mstr);
     EventTime_t * glp = tedtalkGetLastPlayed( talk1 ) ;
     char * sglp = timeToString(glp) ;
     speaker = tedtalkGetSpeaker( talk1 ) ;
@@ -68,15 +68,16 @@ int main( void ) {
     free( title ) ;
     mstr = tedtalkToString( talk2 ) ;
     printf( "The talk2 is: \n\t%s\n", mstr ) ;
-    
+    free(mstr);
     talk1 = tedtalkCopy( talk2 ) ;
     mstr = tedtalkToString( talk1 ) ;
     printf( "The copy of talk2 tedtalk is: \n\t%s \n", mstr ) ;
     tedtalkDelete( talk2 ) ;
+    free(mstr);
     mstr = tedtalkToString( talk1 ) ;
     printf( "After deleting the original talk2, the copy of talk2 "
             "tedtalk is ... \n\t%s\n", mstr ) ;
-
+    free(mstr);    
     char * pstr ;
     talk3 = tedtalkCopy( talk1 ) ;
     if ( tedtalkEquals( talk1, talk3 ) ) {
@@ -85,6 +86,7 @@ int main( void ) {
         printf( "The talk3 tedtalk \n\t%s\n"
                 "    is the same as this tedtalk \n\t%s\n", pstr, mstr ) ;
         free( pstr ) ;
+        free(mstr);
     } else {
         printf( "ERROR: tedtalkCopy() failure!\n" ) ;
     }
@@ -95,14 +97,14 @@ int main( void ) {
     talk3 = newTEDtalk( "How great leaders inspire action", "Simon Sinek" ) ;
     mstr = tedtalkToString( talk3 ) ;
     printf( "The current talk3 tedtalk is: \n\t%s\n", mstr ) ;
-
+    free(mstr);
     tedtalkPlay( talk3, newEventTime(4, 42, "am") ) ;
 
     mstr = tedtalkToString( talk3 ) ;
     printf( "The current talk3 tedtalk is: \n\t%s\n", mstr ) ;
     free( mstr ) ;
 
-    tedtalkDelete( talk1 ) ;
+   // tedtalkDelete( talk1 ) ;
     tedtalkDelete( talk3 ) ;
 
     return EXIT_SUCCESS ;

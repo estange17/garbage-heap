@@ -34,10 +34,10 @@ TEDtalk_t * newTEDtalk(char * t, char * a) {
  
     m = malloc(sizeof(TEDtalk_t));
 
-    m->speaker = malloc(strlen(a) + 1);
+    m->speaker = malloc(strlen(a) + 5);
     strcpy(m->speaker, a);
 
-    m->title = malloc(strlen(t) + 1);
+    m->title = malloc(strlen(t) + 5);
     strcpy(m->title, t);
 
     m->lastPlayed = NULL;
@@ -48,7 +48,7 @@ TEDtalk_t * newTEDtalk(char * t, char * a) {
 /// delete the talk
 
 void tedtalkDelete(TEDtalk_t * m) {
-
+  if (m != NULL){    
     //speaker
     free(m->speaker);
     //title
@@ -57,8 +57,10 @@ void tedtalkDelete(TEDtalk_t * m) {
     if (NULL != m->lastPlayed) {
         timeDelete(m->lastPlayed);
     }
+    free(m);
+    m = NULL;
 }
-
+}
 /// get the talk's speaker
 
 char * tedtalkGetSpeaker( const TEDtalk_t * m) {
